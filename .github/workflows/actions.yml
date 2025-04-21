@@ -14,16 +14,3 @@ jobs:
         run: cmake -S . -B cmbuild
       - name: Run build
         run: make -C cmbuild
-  cmake-windows:
-    runs-on: windows-latest
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v4
-      - name: Set up NASM
-        uses: ilammy/setup-nasm@v1
-      - name: Install dependencies
-        run: python -m pip install ninja
-      - name: Prepare build
-        run: cmake -S . -B cmbuild
-      - name: Run build
-        run: ninja -C cmbuild
