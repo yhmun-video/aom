@@ -1,5 +1,9 @@
-README.md                {#LREADME}
-=========
+# Meson Build Edition
+
+[![Build Status](https://github.com/yhmun-video/aom/actions/workflows/actions.yml/badge.svg)](https://github.com/yhmun-video/aom)
+
+------------------------------------------------------------------------------
+
 # AV1 Codec Library
 
 ## Contents
