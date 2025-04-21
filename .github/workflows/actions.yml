@@ -1,0 +1,19 @@
+name: build
+
+on: [push]
+
+jobs:
+  cmake:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Set up NASM
+        uses: ilammy/setup-nasm@v1
+      - name: Prepare build
+        run: cmake -S . -B cmbuild
+      - name: Run build
+        run: make -C cmbuild
