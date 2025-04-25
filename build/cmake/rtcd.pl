@@ -37,6 +37,7 @@ GetOptions(
   'arch=s',
   'sym=s',
   'config=s',
+  'output=s',
 );
 
 foreach my $opt (qw/arch config/) {
@@ -51,6 +52,12 @@ foreach my $defs_file (@ARGV) {
     warn "$defs_file: $!\n";
     Getopt::Long::HelpMessage('-exit' => 1);
   }
+}
+
+if (defined($opts{output})) {
+  open(FH, '>', $opts{output}) or
+    die "cannot open file";
+  select FH;
 }
 
 open CONFIG_FILE, $opts{config} or
@@ -450,6 +457,10 @@ if ($opts{arch} eq 'x86') {
   riscv;
 } else {
   unoptimized;
+}
+
+if (defined($opts{output})) {
+  close(FH);
 }
 
 __END__

@@ -1,0 +1,120 @@
+option('AOM_TARGET_CPU'                     , type: 'string' , value: '')
+
+#
+# Variables in this section can be set from the Meson command line 
+# The variables control libaom features.
+#
+
+# Build configuration flags.
+option('AOM_RTCD_FLAGS'                     , type: 'string' , value: ''   , description: 'Arguments to pass to rtcd.pl. Separate with ";"')
+option('CONFIG_AV1_DECODER'                 , type: 'boolean', value: true , description: 'Enable AV1 decoder.')
+option('CONFIG_AV1_ENCODER'                 , type: 'boolean', value: true , description: 'Enable AV1 encoder.')
+option('CONFIG_BIG_ENDIAN'                  , type: 'boolean', value: false, description: 'Internal flag.')
+option('CONFIG_FPMT_TEST'                   , type: 'boolean', value: false, description: 'Enable FPMT testing.')
+option('CONFIG_GCC'                         , type: 'boolean', value: false, description: 'Building with GCC (detect).')
+option('CONFIG_GCOV'                        , type: 'boolean', value: false, description: 'Enable gcov support.')
+option('CONFIG_GPROF'                       , type: 'boolean', value: false, description: 'Enable gprof support.')
+option('CONFIG_LIBYUV'                      , type: 'boolean', value: true , description: 'Enables libyuv scaling/conversion support.')
+# Set CONFIG_SVT_AV1 to 0 to avoid the BSD 3-Clause Clear License used by the code in third_party/SVT-AV1/.
+option('CONFIG_SVT_AV1'                     , type: 'boolean', value: true , description: 'Enables SVT-AV1 AVX2 convolution support.')
+option('CONFIG_AV1_HIGHBITDEPTH'            , type: 'boolean', value: true , description: 'Build with high bitdepth support.')
+option('CONFIG_AV1_TEMPORAL_DENOISING'      , type: 'boolean', value: false, description: 'Build with temporal denoising support.')
+option('CONFIG_MULTITHREAD'                 , type: 'boolean', value: true , description: 'Multithread support.')
+option('CONFIG_OS_SUPPORT'                  , type: 'boolean', value: false, description: 'Internal flag.')
+option('CONFIG_PIC'                         , type: 'boolean', value: false, description: 'Build with PIC enabled.')
+option('CONFIG_QUANT_MATRIX'                , type: 'boolean', value: true , description: 'Build with quantization matrices for AV1 encoder. AV1 decoder is always built with quantization matrices.')
+option('CONFIG_REALTIME_ONLY'               , type: 'boolean', value: false, description: 'Build for RTC-only. See aomcx.h for all disabled features.')
+option('CONFIG_RUNTIME_CPU_DETECT'          , type: 'boolean', value: true , description: 'Runtime CPU detection support.')
+option('CONFIG_SHARED'                      , type: 'boolean', value: false, description: 'Build shared libs.')
+option('CONFIG_WEBM_IO'                     , type: 'boolean', value: true , description: 'Enables WebM support.')
+
+# Debugging flags.
+option('CONFIG_DEBUG'                       , type: 'boolean', value: false, description: 'Enable debug-only code.')
+option('CONFIG_EXCLUDE_SIMD_MISMATCH'       , type: 'boolean', value: false, description: 'Exclude mismatch in SIMD functions for testing/debugging.')
+option('CONFIG_MISMATCH_DEBUG'              , type: 'boolean', value: false, description: 'Mismatch debugging flag.')
+
+# AV1 feature flags.
+option('CONFIG_ACCOUNTING'                  , type: 'boolean', value: false, description: 'Enables bit accounting.')
+option('CONFIG_ANALYZER'                    , type: 'boolean', value: false, description: 'Enables bit stream analyzer.')
+option('CONFIG_COEFFICIENT_RANGE_CHECKING'  , type: 'boolean', value: false, description: 'Coefficient range check.')
+option('CONFIG_DENOISE'                     , type: 'boolean', value: true , description: 'Denoise/noise modeling support in encoder.')
+option('CONFIG_INSPECTION'                  , type: 'boolean', value: false, description: 'Enables bitstream inspection.')
+option('CONFIG_INTERNAL_STATS'              , type: 'boolean', value: false, description: 'Enables internal encoder stats.')
+option('FORCE_HIGHBITDEPTH_DECODING'        , type: 'boolean', value: false, description: 'Force high bitdepth decoding pipeline on 8-bit input.')
+option('CONFIG_MAX_DECODE_PROFILE'          , type: 'integer', value: 2    , description: 'Max profile to support decoding.')
+option('CONFIG_NORMAL_TILE_MODE'            , type: 'boolean', value: false, description: 'Only enables general decoding (disables large scale tile decoding).')
+option('CONFIG_SIZE_LIMIT'                  , type: 'boolean', value: false, description: 'Limit max decode width/height.')
+option('CONFIG_TUNE_BUTTERAUGLI'            , type: 'boolean', value: false, description: 'Enable encoding tuning for Butteraugli.')
+option('CONFIG_TUNE_VMAF'                   , type: 'boolean', value: false, description: 'Enable encoding tuning for VMAF.')
+option('DECODE_HEIGHT_LIMIT'                , type: 'boolean', value: false, description: 'Set limit for decode height.')
+option('DECODE_WIDTH_LIMIT'                 , type: 'boolean', value: false, description: 'Set limit for decode width.')
+option('STATIC_LINK_JXL'                    , type: 'boolean', value: false, description: 'Statically link the JPEG-XL library.')
+
+# AV1 experiment flags.
+option('CONFIG_BITRATE_ACCURACY'            , type: 'boolean', value: false, description: 'AV1 experiment: Improve bitrate accuracy.')
+option('CONFIG_BITRATE_ACCURACY_BL'         , type: 'boolean', value: false, description: 'AV1 experiment: Baseline of improve bitrate accuracy experiment.')
+option('CONFIG_BITSTREAM_DEBUG'             , type: 'boolean', value: false, description: 'AV1 experiment: Bitstream debugging.')
+option('CONFIG_COLLECT_COMPONENT_TIMING'    , type: 'boolean', value: false, description: 'AV1 experiment: Collect encoding component timing information.')
+option('CONFIG_COLLECT_PARTITION_STATS'     , type: 'boolean', value: false, description: 'AV1 experiment: Collect partition timing stats. Can be 1 or 2.')
+option('CONFIG_COLLECT_RD_STATS'            , type: 'boolean', value: false, description: 'AV1 experiment.')
+option('CONFIG_DISABLE_FULL_PIXEL_SPLIT_8X8', type: 'boolean', value: true , description: 'AV1 experiment: Disable full_pixel_motion_search_based_split on BLOCK_8X8.')
+option('CONFIG_ENTROPY_STATS'               , type: 'boolean', value: false, description: 'AV1 experiment.')
+option('CONFIG_INTER_STATS_ONLY'            , type: 'boolean', value: false, description: 'AV1 experiment.')
+option('CONFIG_NN_V2'                       , type: 'boolean', value: false, description: 'AV1 experiment: Fully-connected neural nets ver.2.')
+option('CONFIG_OPTICAL_FLOW_API'            , type: 'boolean', value: false, description: 'AV1 experiment: for optical flow API.')
+option('CONFIG_PARTITION_SEARCH_ORDER'      , type: 'boolean', value: false, description: 'AV1 experiment: Use alternative partition search order.')
+option('CONFIG_RATECTRL_LOG'                , type: 'boolean', value: false, description: 'AV1 experiment: Log rate control decision.')
+option('CONFIG_RD_COMMAND'                  , type: 'boolean', value: false, description: 'AV1 experiment: Use external rdmult and q_index.')
+option('CONFIG_RD_DEBUG'                    , type: 'boolean', value: false, description: 'AV1 experiment.')
+option('CONFIG_RT_ML_PARTITIONING'          , type: 'boolean', value: false, description: 'AV1 experiment: Build with ML-based partitioning for Real Time.')
+option('CONFIG_SPEED_STATS'                 , type: 'boolean', value: false, description: 'AV1 experiment.')
+option('CONFIG_TFLITE'                      , type: 'boolean', value: false, description: 'AV1 experiment: Enable tensorflow lite library.')
+option('CONFIG_THREE_PASS'                  , type: 'boolean', value: false, description: 'AV1 experiment: Enable three-pass encoding.')
+option('CONFIG_OUTPUT_FRAME_SIZE'           , type: 'boolean', value: false, description: 'AV1 experiment: Output frame size information.')
+option('CONFIG_SALIENCY_MAP'                , type: 'boolean', value: false, description: 'AV1 experiment: Enable saliency map based encoding tuning for VMAF.')
+option('CONFIG_CWG_C013'                    , type: 'boolean', value: false, description: 'AV1 experiment: Support for 7.x and 8.x levels.')
+option('CONFIG_CWG_E050'                    , type: 'boolean', value: false, description: 'AV1 experiment: Support for multilayer metadata OBU.')
+# Add this change to make aomenc reported PSNR consistent with libvmaf result.
+option('CONFIG_LIBVMAF_PSNR_PEAK'           , type: 'boolean', value: true , description: 'Use libvmaf PSNR peak for 10- and 12-bit')
+
+#
+# Variables in this section control optional features of the build system.
+#
+option('ENABLE_CCACHE'                      , type: 'boolean', value: false, description: 'Enable ccache support.')
+option('ENABLE_DECODE_PERF_TESTS'           , type: 'boolean', value: false, description: 'Enables decoder performance tests')
+option('ENABLE_DISTCC'                      , type: 'boolean', value: false, description: 'Enable distcc support.')
+option('ENABLE_DOCS'                        , type: 'boolean', value: true , description: 'Enable documentation generation (doxygen required).')
+option('ENABLE_ENCODE_PERF_TESTS'           , type: 'boolean', value: false, description: 'Enables encoder performance tests')
+option('ENABLE_EXAMPLES'                    , type: 'boolean', value: true , description: 'Enables build of example code.')
+option('ENABLE_GOMA'                        , type: 'boolean', value: false, description: 'Enable goma support.')
+option('ENABLE_IDE_TEST_HOSTING'            , type: 'boolean', value: false, description: 'Enables running tests within IDEs like Visual Studio and Xcode.')
+option('ENABLE_NASM'                        , type: 'boolean', value: false, description: 'Use nasm instead of yasm for x86 assembly.')
+option('ENABLE_TESTDATA'                    , type: 'boolean', value: true , description: 'Enables unit test data download targets.')
+option('ENABLE_TESTS'                       , type: 'boolean', value: true , description: 'Enables unit tests.')
+option('ENABLE_TOOLS'                       , type: 'boolean', value: true , description: 'Enable applications in tools sub directory.')
+option('ENABLE_WERROR'                      , type: 'boolean', value: false, description: 'Converts warnings to errors at compile time.')
+
+# Arm/AArch64 assembly/intrinsics flags.
+option('ENABLE_NEON'                        , type: 'boolean', value: true , description: 'Enables Neon optimizations on Arm/AArch64 targets.')
+option('ENABLE_ARM_CRC32'                   , type: 'boolean', value: true , description: 'Enables Arm CRC32 optimizations.')
+option('ENABLE_NEON_DOTPROD'                , type: 'boolean', value: true , description: 'Enables Armv8.2-A Neon dotprod optimizations on AArch64 targets.')
+option('ENABLE_NEON_I8MM'                   , type: 'boolean', value: true , description: 'Enables Armv8.2-A Neon i8mm optimizations on AArch64 targets.')
+option('ENABLE_SVE'                         , type: 'boolean', value: true , description: 'Enables Armv8.2-A SVE optimizations on AArch64 targets.')
+option('ENABLE_SVE2'                        , type: 'boolean', value: true , description: 'Enables Armv9-A SVE2 optimizations on AArch64 targets.')
+
+# VSX intrinsics flags.
+option('ENABLE_VSX'                         , type: 'boolean', value: true , description: 'Enables VSX optimizations on PowerPC targets.')
+
+# x86/x86_64 assembly/intrinsics flags.
+option('ENABLE_MMX'                         , type: 'boolean', value: true , description: 'Enables MMX optimizations on x86/x86_64 targets.')
+option('ENABLE_SSE'                         , type: 'boolean', value: true , description: 'Enables SSE optimizations on x86/x86_64 targets.')
+option('ENABLE_SSE2'                        , type: 'boolean', value: true , description: 'Enables SSE2 optimizations on x86/x86_64 targets.')
+option('ENABLE_SSE3'                        , type: 'boolean', value: true , description: 'Enables SSE3 optimizations on x86/x86_64 targets.')
+option('ENABLE_SSSE3'                       , type: 'boolean', value: true , description: 'Enables SSSE3 optimizations on x86/x86_64 targets.')
+option('ENABLE_SSE4_1'                      , type: 'boolean', value: true , description: 'Enables SSE4_1 optimizations on x86/x86_64 targets.')
+option('ENABLE_SSE4_2'                      , type: 'boolean', value: true , description: 'Enables SSE4_2 optimizations on x86/x86_64 targets.')
+option('ENABLE_AVX'                         , type: 'boolean', value: true , description: 'Enables AVX optimizations on x86/x86_64 targets.')
+option('ENABLE_AVX2'                        , type: 'boolean', value: true , description: 'Enables AVX2 optimizations on x86/x86_64 targets.')
+
+# RVV intrinsics flags.
+option('ENABLE_RVV'                         , type: 'boolean', value: true , description: 'Enables RVV optimizations on RISC-V targets.')

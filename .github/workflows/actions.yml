@@ -14,3 +14,19 @@ jobs:
         run: cmake -S . -B cmbuild
       - name: Run build
         run: make -C cmbuild
+  meson:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Set up NASM
+        uses: ilammy/setup-nasm@v1
+      - name: Install dependencies
+        run: python -m pip install meson ninja
+      - name: Prepare build
+        run: meson setup Build/meson
+      - name: Run build
+        run: meson compile -C Build/meson
